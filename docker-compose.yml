@@ -3,7 +3,6 @@ version: "3.8"
 services:
   backend:
     build: ./backend
-    container_name: backend
     networks:
       - backend_network
     ports:
@@ -12,37 +11,31 @@ services:
       - redis
       - db
     environment:
-      POSTGRES_PASSWORD: secret
-    command: sh -c  "python app.py"
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
 
   worker:
     build: ./worker
-    container_name: worker
     networks:
       - backend_network
     depends_on:
       - redis
       - db
     environment:
-      POSTGRES_PASSWORD: secret
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
 
   redis:
     image: redis:latest
-    container_name: redis
     networks:
       - backend_network
 
   db:
     image: postgres:13
-    container_name: db
     networks:
       - backend_network
     environment:
       POSTGRES_DB: feedbackdb
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
-    secrets:
-      - db_password
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/postgresql/data
 
@@ -51,8 +44,4 @@ networks:
 
 volumes:
   db_data:
-
-secrets:
-  db_password:
-    file: db_password.txt
 
