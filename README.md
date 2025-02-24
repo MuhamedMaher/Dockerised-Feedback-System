@@ -32,7 +32,7 @@ A containerized product feedback system that allows users to submit feedback for
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/YourUsername/Dockerised-Feedback-System.git
+   git clone https://github.com/YourUsername/Dockerized-Feedback-System.git
    cd product-feedback-system
    
 2. **Set Up the Database Password:**
