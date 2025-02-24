@@ -1,4 +1,4 @@
-# Dockerised Feedback System
+# Dockerized Feedback System
 
 A containerized product feedback system that allows users to submit feedback for products and view aggregated results. This project uses Flask for the backend, Redis for messaging, and PostgreSQL for persistent storage. The entire stack is orchestrated with Docker and Docker Compose.
 
